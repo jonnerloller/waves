@@ -7,11 +7,12 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-8
+      - gcov05
 
 install:
+  - pip install --upgrade pip
   - pip install conan
   #- conan user
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
 
 script:
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -D ENABLE_COVERAGE:BOOL=TRUE . 
