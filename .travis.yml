@@ -7,11 +7,11 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-8
-      - gcov
 
 install:
-  - pip install --upgrade pip
-  - pip install conan
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+  #- pip install --upgrade pip
+  #- pip install conan
   #- conan user
 
 script:
