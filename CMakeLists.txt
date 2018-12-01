@@ -52,13 +52,13 @@ else()
                          )
 endif()
 
-add_executable(intro main.cpp)
+add_executable(intro arc/main.cpp)
 target_compile_features(intro PRIVATE cxx_std_17)
 target_link_libraries(intro PRIVATE project_warnings --coverage)
 
 enable_testing()
 
-add_executable(tester tester.cpp)
+add_executable(tester tests/tester.cpp)
 target_link_libraries(tester PRIVATE project_warnings --coverage)
 add_test(Tester tester)
 
