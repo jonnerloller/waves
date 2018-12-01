@@ -8,9 +8,6 @@ addons:
     packages:
       - g++-8
       #- lcov
-
-#branches:
-#  only:
 	  
 install:
   #- sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
@@ -31,4 +28,3 @@ script:
 #  - lcov --list coverage.info #debug info
 #  # Uploading report to CodeCov
 #  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
-
