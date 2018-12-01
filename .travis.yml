@@ -7,7 +7,7 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-8
-	  - lcov
+      - lcov
 
 branches:
   only:
@@ -22,7 +22,7 @@ script:
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -D ENABLE_COVERAGE:BOOL=TRUE . 
   - cmake --build . -- -j2 
   - ctest -j2
-  - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-5
+  #- bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-5
 
 after_success:
   - cd ${TRAVIS_BUILD_DIR}
@@ -30,5 +30,5 @@ after_success:
   - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
   - lcov --list coverage.info #debug info
   # Uploading report to CodeCov
-- bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
 
