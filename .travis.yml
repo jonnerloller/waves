@@ -1,3 +1,4 @@
+
 dist: trusty
 language: cpp
 
@@ -7,6 +8,10 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-8
+      - lcov
+
+branches:
+  only:
 
 install:
   #- sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
@@ -20,3 +25,10 @@ script:
   - ctest -j2
   - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-5
 
+after_success:
+  - cd ${TRAVIS_BUILD_DIR}
+  - lcov --directory . --capture --output-file coverage.info # capture coverage info
+  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+  - lcov --list coverage.info #debug info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
