@@ -14,7 +14,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
-            - clan-7
+            - clang-7
 
 branches:
   only:
