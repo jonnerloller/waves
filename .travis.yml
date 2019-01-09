@@ -1,6 +1,8 @@
 sudo: require
 language: cpp
 
+cache: ccache
+
 matrix:
   include:
     - name: "gcc 7 Debug Coverage (ONLY_COVERAGE)"
