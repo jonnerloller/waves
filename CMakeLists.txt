@@ -139,6 +139,10 @@ endif()
 ##################
 enable_testing()
 
+add_executable(basic_tests tests/test_ci.cpp)
+target_link_libraries(basic_tests PRIVATE project_options project_warnings CONAN_PKG::catch2)
+catch_discover_tests(basic_tests TEST_PREFIX "Basic.")
+
 if(NOT ONLY_COVERAGE)
   add_executable(waves src/main.cpp)
   target_link_libraries(waves 
