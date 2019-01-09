@@ -144,7 +144,7 @@ target_link_libraries(basic_tests PRIVATE project_options project_warnings CONAN
 catch_discover_tests(basic_tests TEST_PREFIX "basic.")
 
 add_executable(relaxed_basic_tests tests/test_ci.cpp)
-target_link_libraries(basic_tests PRIVATE project_options project_warnings CONAN_PKG::catch2 CONAN_PKG::glm)
+target_link_libraries(relaxed_basic_tests PRIVATE project_options project_warnings CONAN_PKG::catch2 CONAN_PKG::glm)
 target_compile_definitions(relaxed_basic_tests PRIVATE RELAXED_CONSTEXPR=1)
 catch_discover_tests(basic_tests TEST_PREFIX "relaxed_basic.")
 
