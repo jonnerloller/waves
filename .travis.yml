@@ -19,9 +19,6 @@ matrix:
 branches:
   only:
 
-deploy:
-  skip_cleanup: true
-
 install:
   - pip install --user conan cmake
 
