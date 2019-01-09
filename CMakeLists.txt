@@ -140,7 +140,7 @@ endif()
 enable_testing()
 
 add_executable(basic_tests tests/test_ci.cpp)
-target_link_libraries(basic_tests PRIVATE project_options project_warnings CONAN_PKG::catch2)
+target_link_libraries(basic_tests PRIVATE project_options project_warnings CONAN_PKG::catch2 CONAN_PKG::glm)
 catch_discover_tests(basic_tests TEST_PREFIX "Basic.")
 
 if(NOT ONLY_COVERAGE)
