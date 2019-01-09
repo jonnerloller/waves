@@ -17,12 +17,7 @@ matrix:
 branches:
   only:
 
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
-
 install:
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
   - pip install --user conan cmake
 
 script:
@@ -37,11 +32,7 @@ script:
   - mkdir build
   - cd build
   - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan 
-  - conan install ..
-  - VERBOSE=1 cmake --build .. -j2
-  #- ctest -j2
-  - if [ "${COVERAGE}" = "1" ]; then gcov-5 -n -o . $filename > /dev/null;  bash <(curl -s https://codecov.io/bash) -x $GCOV 2>/dev/null ; fi
-  
-after_success: 
-  -  if [ "${COVERAGE}" = "1" ]; bash for filename in `find . | egrep '\.cpp'`; do gcov-5 -n -o . $filename > /dev/null; done ;fi
-  -  if [ "${COVERAGE}" = "1" ]; bash <(curl -s https://codecov.io/bash) ;fi
+  - cmake  $CMAKE_OPTS ..
+  - VERBOSE=1 cmake --build . -- -j2
+  - ctest -j2
+  - if [ "${COVERAGE}" = "1" ]; then bash <(curl -s https://codecov.io/bash) -x $GCOV 2>/dev/null ; fi
