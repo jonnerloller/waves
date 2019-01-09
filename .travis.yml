@@ -20,7 +20,7 @@ branches:
 
 install:
   #- sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
-  - pip install --user conan cmake
+  - pip install --user conan cmake coveragepy
 
 script:
   - $CXX_EXE --version
@@ -35,8 +35,6 @@ script:
   - cd build
   - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan 
   - conan install ..
-  - cmake $CMAKE_OPTS ..
-  - VERBOSE=1 cmake --build . -- -j2
-  - cmake --build . -- -j2 
+  - VERBOSE=1 cmake --build .. -j2
   #- ctest -j2
   - if [ "${COVERAGE}" = "1" ]; then bash <(curl -s https://codecov.io/bash) -x $GCOV 2>/dev/null ; fi
