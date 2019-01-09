@@ -21,8 +21,6 @@ branches:
 install:
   #- sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
   - pip install --user conan cmake
-  - pip install conan
-  - conan install
 
 script:
   - $CXX_EXE --version
