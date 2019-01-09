@@ -101,11 +101,11 @@ conan_check(REQUIRED)
 conan_cmake_run(CONANFILE conanfile.txt BASIC_SETUP CONAN_COMMAND ${CONAN_CMD} CMAKE_TARGETS BUILD missing)
 set(CMAKE_MODULE_PATH /usr/share/SFML/cmake/Modules)
 
-#if (CONAN_CATCH2_ROOT_DEBUG)
-#  include(${CONAN_CATCH2_ROOT_DEBUG}/lib/cmake/Catch2/Catch.cmake)
-#else ()
-#  include(${CONAN_CATCH2_ROOT}/lib/cmake/Catch2/Catch.cmake)
-#endif ()
+if (CONAN_CATCH2_ROOT_DEBUG)
+  include(${CONAN_CATCH2_ROOT_DEBUG}/lib/cmake/Catch2/Catch.cmake)
+else ()
+  include(${CONAN_CATCH2_ROOT}/lib/cmake/Catch2/Catch.cmake)
+endif ()
 
 ###########
 ### Options
