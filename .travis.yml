@@ -48,4 +48,4 @@ after_success:
   #- lcov --list coverage.info #debug info
   # Uploading report to CodeCov
   #- bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
-  - bash <(curl -s https://codecov.io/bash) -x $GCOV 2>/dev/null ; fi
+  - bash <(curl -s https://codecov.io/bash) -x $GCOV 2>/dev/null ;
