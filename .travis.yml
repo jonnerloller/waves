@@ -18,7 +18,7 @@ matrix:
             - libudev-dev
             - g++-7
             - g++-8
-            #- lcov
+            - lcov
 
 install:
   - pip install --user conan cmake codecov
@@ -40,12 +40,12 @@ script:
   - ctest -j2
   
 after_success:
-  #- codecov
+  - codecov
   # Creating report
-  #- cd ${TRAVIS_BUILD_DIR}
-  #- lcov --directory . --capture --output-file coverage.info # capture coverage info
-  #- lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
-  #- lcov --list coverage.info #debug info
+  - cd ${TRAVIS_BUILD_DIR}
+  - lcov --directory . --capture --output-file coverage.info # capture coverage info
+  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+  - lcov --list coverage.info #debug info
   # Uploading report to CodeCov
-  #- bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
   - bash <(curl -s https://codecov.io/bash) -x $GCOV 2>/dev/null ;
