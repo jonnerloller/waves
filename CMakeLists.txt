@@ -6,19 +6,6 @@ if(CCACHE)
   set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE})
 endif()
 
-# Setting default folders
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-# In CMakeModules I include code coverage for c++
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
-
-
-if(CMAKE_COMPILER_IS_GNUCXX)
-    include(CodeCoverage)
-    setup_target_for_coverage(${PROJECT_NAME}_coverage tests coverage)
-endif()
-
 ##
 ## Set compiler flags before running conan
 ##
@@ -37,10 +24,10 @@ if(MSVC)
 else()
   option(ONLY_COVERAGE "Build only tests necessary for coverage" FALSE)
   option(LIBCPP "Build with libc++" FALSE)
-  option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
+  option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" TRUE)
 
   if(ONLY_COVERAGE OR ENABLE_COVERAGE)
-    target_compile_options(project_options INTERFACE --coverage -O0 -g -fprofile-arcs -ftest-coverage)
+    target_compile_options(project_options INTERFACE --coverage -O0 -g)
     target_link_libraries(project_options INTERFACE --coverage )
   endif()
 
